@@ -1,0 +1,7 @@
+NEI<-readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+PMTotalByYearBaltimore<-aggregate(NEI$Emissions,list(NEI$year,NEI$fips=="24510"),sum)
+PMEmissionByYearBaltimore<-subset(PMTotalByYearBaltimore,Group.2==TRUE)
+png("Question2.png")
+barplot(PMEmissionByYearBaltimore$x,PMEmissionByYearBaltimore$Group.1,names.arg=c("1999","2002","2005","2008"),main="PM2.5 Emissions by Year for Baltimore City MaryLand",xlab="years", ylab=expression('total PM'[2.5]*' emission'))
+dev.off()
